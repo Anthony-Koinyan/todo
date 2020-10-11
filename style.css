@@ -1,0 +1,243 @@
+/* GENERAL VIEW */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    color: #555555;
+    background-color: #B4B4B4;
+    font-family: Lato;
+    font-size: 1rem;
+    position: relative;
+    height: 100vh;
+    font-weight: 400;
+}
+
+h1 {
+    background-color: #6E6E6E;
+    padding: 1rem;
+    text-align: center;
+}
+
+#page {
+    width: 90vw;
+    margin: 3rem auto 0 auto;
+}
+
+.right {float: right;}
+
+.edit {
+    background-color: #CECECE;
+    margin: 1rem;
+    max-height: 300px;
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
+.item {
+    padding: 1rem;
+    background-color: #E7E7E7;
+    display: flex;
+}
+
+.item:nth-child(even) { background-color: #F7F7F7; }
+
+.item:hover .edit-item {
+    display: flex;
+    flex: auto;
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+}
+
+/* LIST VIEW */
+
+#lists {
+    float: left;
+    width: 29.7rem;
+    height: 72.3vh;
+    background-color: #CECECE;
+}
+
+#create-list {
+    padding: 1rem 0 0 1rem;
+    display: flex;
+    vertical-align: middle;
+    background-color: inherit;
+}
+
+#list-title {
+    margin: 1rem;
+    background-color: #CECECE;
+    padding: auto;
+    padding-right: 1.5rem;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 1.125rem;
+    font-weight: 400;
+}
+
+.edit-item {
+    margin: none;
+    padding-top: none;
+}
+
+.list-name {
+    margin: none;
+    padding-right: auto;
+}
+
+/* ACTIVITIES VIEW */
+
+#activities {
+    margin-right: auto;
+    float: right;
+    height: 72.3vh;
+    width: 29.7rem;
+    background-color:  #CECECE;
+}
+
+#add-title {
+    margin: 1rem 0;
+    padding: auto;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+#save {display: flex;}
+
+.set-title {
+    position: relative;
+    margin: none;
+    padding-top: 0.4rem;
+    width: 14.85rem;
+    left: 49%;
+    transform: translateX(-49%);
+    color: #555;
+    background-color: #CECECE;
+    border: none;
+    outline: none;
+    font-family: Lato;
+    font-size: 1.25rem;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 300;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#set-activity {
+    background-color: #CECECE;
+    margin: 1rem;
+    max-height: 16rem;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    overflow: auto;
+}
+
+.description {
+    margin: none;
+    padding-right: auto;
+}
+
+#set-activity .remove-btn {
+    margin: 0 0.1rem 0 auto;
+}
+
+#add {
+    margin: none;
+    padding: 0.5rem;
+    width: 29.7rem;;
+    border-top: 1px solid #E7E7E7;
+    border-bottom: 1px solid #E7E7E7;
+    background-color: #CECECE;
+    position: fixed;
+    bottom: 3rem;
+}
+
+.add-item {
+    border: 1px solid #E7E7E7;
+    background-color: #F7F7F7;
+    color: inherit;
+    font-family: inherit;
+    font-size: 0.875rem;
+    padding: 0.75rem 6.4rem;
+    margin-right: 0.75rem;
+    border-radius: 5rem;                            
+    transition: border 0.3s;
+}
+
+.add-item:focus {
+    outline: none;
+    border: 1px solid #555555;
+}
+
+/* BUTTONS */
+ 
+button {
+    background: none;
+    border: none;
+    color: #555555;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.new-list {
+    margin: 0 1.5rem 0 auto;
+    font-size: 2rem;
+    line-height: 1.1;
+    vertical-align: top;
+}
+
+.new-list:focus {outline: none;}
+
+
+.add-btn {
+    font-size: 2.2rem;
+    background-color: #CECECE;
+    vertical-align: middle;
+    line-height: 1.1;
+    margin-left: 1rem;
+}
+
+
+.new-list:focus,
+.add-btn:focus {outline: none;}
+
+.new-list:active,
+.add-btn:active { transform: translateY(2px); }
+
+.remove-btn,
+.edit-btn {
+    font-size: 1.4rem;
+    line-height: 1;
+    display: none;
+}
+
+.edit-btn {
+    margin: 0 0 0 auto;
+}
+
+.remove-btn {
+    margin: 0 0.1rem 0 0.5rem;
+}
+
+.edit-btn:focus,
+.remove-btn:focus { outline: none;}
+
+.edit-btn:active, 
+.remove-btn:active {
+    vertical-align: text-top;
+    transform: translateY(2px);
+}  
+
+.item:hover .remove-btn { display: inline-block;}
+
+.item:hover .edit-btn {display: inline-block;}
