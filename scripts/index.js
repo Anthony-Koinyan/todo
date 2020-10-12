@@ -46,7 +46,7 @@ function accessNestedBtn(event) {
     parentClass = event.target.parentNode.className;
     rootID = event.target.parentNode.parentNode.parentNode.parentNode.id;
     containerID = document.getElementById(event.target.parentNode.parentNode.parentNode.id);
-    containerText = containerID.attributes.id.textContent;
+    containerText = containerID.innerText;
 
     if (parentClass == 'remove-btn') {
         containerID.parentNode.removeChild(containerID);
