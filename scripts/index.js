@@ -42,12 +42,13 @@ function saveForm(test) {
 };
 
 function accessNestedBtn(event) {
+    clearUIELement(elements.activities);
     let parentClass, containerID, rootID, containerText;
     parentClass = event.target.parentNode.className;
     rootID = event.target.parentNode.parentNode.parentNode.parentNode.id;
     containerID = document.getElementById(event.target.parentNode.parentNode.parentNode.id);
     containerText = containerID.innerText;
-
+    console.log(containerText)
     if (parentClass == 'remove-btn') {
         containerID.parentNode.removeChild(containerID);
 
@@ -60,12 +61,12 @@ function accessNestedBtn(event) {
         newForm();
         elements.listTitle.value = containerText;
         titleBeforeEdit = elements.listTitle.value;
-        for (let el in state[containerText].activities) {
-            cache.addActivity(state[containerText].activities[el]);
-            renderActivity(elements.activities, state[containerText].activities[el], 'Activity');
+        for (let el of state[containerText].activities) {
+            cache.addActivity(el);
+            renderActivity(elements.activities, el, 'Activity');
         };
         wasEditButttonClicked = true;
-        titleAfterEdit = containerID.children[0];
+        titleID = containerID.children[0];
     };
 };
 
