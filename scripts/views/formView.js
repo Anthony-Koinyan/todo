@@ -26,7 +26,7 @@ export function renderActivity(parent, activity, type){
                 <button class="remove-btn">
                     <i class="ion-ios-close-outline"></i>
                 </button>
-                </div>
+            </div>
         </div> `;
     }
     
@@ -34,7 +34,7 @@ export function renderActivity(parent, activity, type){
 };
 
 export function editRenderName(parent, value) {
-    parent.textContent = value;
+    parent.innerText = value;
 }
 
 export function clearUIELement(node) {

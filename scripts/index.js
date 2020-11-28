@@ -4,7 +4,7 @@ import {renderPanel, renderActivity, editRenderName, clearUIELement} from './vie
 
 const state = {};
 resetPanel(elements.listPanel ,elements.activitiesPanel);
-let cache, titleBeforeEdit, titleAfterEdit,wasEditButttonClicked = false;
+let cache, previousTitle, activity;
 
 function newForm() {
     cache = new form('test');
@@ -23,16 +23,17 @@ function newActivity() {
 function saveForm(test) {
     cache.title = getVal(elements.listTitle).toUpperCase();
     
-    if (cache.title in state && test == false) {
+    if (cache.title in state && !test) {
         alert('A list with this title already exit.')
         return
     };
 
-    if (test == false) {
+    if (!test) {
         renderActivity(elements.createList, cache.title, 'List');
     } else {
-        editRenderName(titleAfterEdit, getVal(elements.listTitle).toUpperCase());
-        delete state[titleBeforeEdit]
+        editRenderName(test.firstChild, getVal(elements.listTitle).toUpperCase());
+        delete state[previousTitle];
+        activity = null;
     };
 
     state[cache.title] = cache;
@@ -42,45 +43,47 @@ function saveForm(test) {
 };
 
 function accessNestedBtn(event) {
-    clearUIELement(elements.activities);
-    let parentClass, containerID, rootID, containerText;
-    parentClass = event.target.parentNode.className;
-    rootID = event.target.parentNode.parentNode.parentNode.parentNode.id;
-    containerID = document.getElementById(event.target.parentNode.parentNode.parentNode.id);
-    containerText = containerID.innerText;
-    console.log(containerText)
-    if (parentClass == 'remove-btn') {
-        containerID.parentNode.removeChild(containerID);
+    
+    let eventParentClass = event.target.parentNode.className;
+    activity = document.getElementById(event.target.parentNode.parentNode.parentNode.id);
 
-        if (rootID == 'set-activity') {
-            cache.deleteActivity(containerText);
-        } else if (rootID == 'edit-list') {
-            delete state[containerText];
-        };
-    } else if (parentClass == 'edit-btn') {
+    if (eventParentClass == 'remove-btn') {
+        
+        if (activity.parentNode.id === 'set-activity') {
+            cache.deleteActivity(activity.innerText)
+        }
+
+        if (activity.parentNode.id === 'edit-list') {
+            delete state[activity.innerText];
+        }
+
+        activity.parentNode.removeChild(activity);
+    };
+    
+    if (eventParentClass == 'edit-btn') {
+        clearVal(elements.listTitle);
+        clearUIELement(elements.activities);
         newForm();
-        elements.listTitle.value = containerText;
-        titleBeforeEdit = elements.listTitle.value;
-        for (let el of state[containerText].activities) {
-            cache.addActivity(el);
-            renderActivity(elements.activities, el, 'Activity');
-        };
-        wasEditButttonClicked = true;
-        titleID = containerID.children[0];
+        previousTitle = activity.innerText;
+        elements.listTitle.value = activity.innerText;
+        state[activity.innerText].activities.forEach(element => {
+            cache.addActivity(element);
+            renderActivity(elements.activities, element, 'Activity');
+        });
     };
 };
 
-elements.newList.addEventListener('click', e => {
-    newForm();
-});
+elements.newList.addEventListener('click', newForm);
 
-elements.addActivityBtn.addEventListener('click', e => {
-    newActivity();
-});
+elements.newActivity.addEventListener('keypress', e => {
+    if (e.keyCode === 13) newActivity();
+})
+
+elements.addActivityBtn.addEventListener('click', newActivity);
 
 elements.saveList.addEventListener('click', e => {
     if (getVal(elements.listTitle) != '') {
-        saveForm(wasEditButttonClicked);
+        saveForm(activity);
     } else alert('Add a title to your todo list')
 });
 
