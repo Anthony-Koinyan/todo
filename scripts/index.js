@@ -1,5 +1,5 @@
 import {form} from './models/form.js';
-import {elements, resetPanel, getVal, clearVal} from './views/base.js';
+import {elements, resetPanel, getVal, clearVal, getChildNodes} from './views/base.js';
 import {renderPanel, renderActivity, editRenderName, clearUIELement} from './views/formView.js';
 
 const state = {};
@@ -42,6 +42,19 @@ function saveForm(test) {
     resetPanel(elements.listPanel, elements.activitiesPanel);
 };
 
+function edit(activity) {
+
+    clearVal(elements.listTitle);
+    clearUIELement(elements.activities);
+    newForm();
+    previousTitle = activity.innerText;
+    elements.listTitle.value = activity.innerText;
+    state[activity.innerText].activities.forEach(element => {
+        cache.addActivity(element);
+        renderActivity(elements.activities, element, 'Activity');
+    });
+}
+
 function accessNestedBtn(event) {
     
     let eventParentClass = event.target.parentNode.className;
@@ -55,21 +68,16 @@ function accessNestedBtn(event) {
 
         if (activity.parentNode.id === 'edit-list') {
             delete state[activity.innerText];
+            clearVal(elements.listTitle);
+            clearUIELement(elements.activities);
+            resetPanel(elements.listPanel, elements.activitiesPanel);
         }
 
         activity.parentNode.removeChild(activity);
     };
     
     if (eventParentClass == 'edit-btn') {
-        clearVal(elements.listTitle);
-        clearUIELement(elements.activities);
-        newForm();
-        previousTitle = activity.innerText;
-        elements.listTitle.value = activity.innerText;
-        state[activity.innerText].activities.forEach(element => {
-            cache.addActivity(element);
-            renderActivity(elements.activities, element, 'Activity');
-        });
+        edit(activity);
     };
 };
 
@@ -86,6 +94,16 @@ elements.saveList.addEventListener('click', e => {
         saveForm(activity);
     } else alert('Add a title to your todo list')
 });
+
+elements.page.addEventListener('click', e => {
+    let activityElements = getChildNodes(elements.activitiesPanel);
+
+    if (elements.activitiesPanel.style.display == 'block' && getVal(elements.listTitle) !== '') {
+        if (!activityElements.includes(e.target) && e.target.id !== 'activities' && e.target.tagName !== 'I') {
+            saveForm(activity)
+        }
+    }
+})
 
 elements.createList.addEventListener('click', accessNestedBtn);
 

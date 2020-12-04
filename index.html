@@ -1,43 +1,43 @@
 <!DOCTYPE html 5>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo</title>
-    <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
-    <link type="text/css" rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h1>Todo List</h1> 
-    <div id="page">
-        <div id="lists">
-            <div id="create-list">
-                <div id="list-title">Lists</div>
-                <button class="new-list">
-                    <i class="ion-ios-plus-outline"></i>
-                </button>
-            </div>
-            <div class="edit" id="edit-list"></div>
-        </div>
-        <div id="activities">
-            <div id="get-title">
-                <div id="add-title">List</div>
-                <div id="save">
-                    <div>
-                        <input type="text" class="set-title" placeholder="Add Title">
-                    </div>
-                    <button class="right new-list" id="save-list">
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Todo</title>
+        <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
+        <link type="text/css" rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1>Todo List</h1> 
+        <div id="page">
+            <div id="lists">
+                <div id="create-list">
+                    <div id="list-title">Lists</div>
+                    <button class="new-list">
                         <i class="ion-ios-plus-outline"></i>
                     </button>
                 </div>
+                <div class="edit" id="edit-list"></div>
             </div>
-            <div class="edit" id="set-activity"></div>
-            <div id="add">
-                <input type="text" class="add-item" placeholder="Add Activity">
-                <button class="add-btn"><i class="ion-ios-checkmark-outline"></i></button>
+            <div id="activities">
+                <div id="get-title">
+                    <div id="add-title">List</div>
+                    <div id="save">
+                        <div>
+                            <input type="text" class="set-title" placeholder="Add Title">
+                        </div>
+                        <button class="right new-list" id="save-list">
+                            <i class="ion-ios-plus-outline"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="edit" id="set-activity"></div>
+                <div id="add">
+                    <input type="text" class="add-item" placeholder="Add Activity">
+                    <button class="add-btn"><i class="ion-ios-checkmark-outline"></i></button>
+                </div>
             </div>
         </div>
-    </div>
-    <script type="module" src="scripts/index.js"></script>
-</body>
+        <script type="module" src="scripts/index.js"></script>
+    </body>
 </html>

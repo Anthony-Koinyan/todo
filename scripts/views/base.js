@@ -7,7 +7,8 @@ export const elements = {
     addActivityBtn: document.querySelector('.add-btn'),
     listTitle: document.querySelector('.set-title'),
     saveList: document.querySelector('#save-list'),
-    createList: document.querySelector('#edit-list')
+    createList: document.querySelector('#edit-list'),
+    page: document.querySelector('body')
 };
 
 export function resetPanel(main, panel) {
@@ -19,4 +20,8 @@ export const getVal = input => input.value;
 
 export function clearVal(node) {
     node.value='';
+}
+
+export function getChildNodes(node) {
+    return Array.from(node.querySelectorAll('*'))
 }
